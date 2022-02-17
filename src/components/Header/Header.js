@@ -31,7 +31,7 @@ const Header = () => {
               INICIAR SESIÓN
             </Link>
           </div>
-          <Link to="/">
+          <Link to="/" className='header__navbar--subs'>
             <div className='header__navbar--div5'>
                 QUIERO SUBSCRIBIRME
             </div >

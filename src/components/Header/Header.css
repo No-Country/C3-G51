@@ -13,6 +13,7 @@
 .header__navbar a {
   text-decoration: none;
   color: #40817a;
+  transition: all 0.5s ease-in-out;
 }
 .header__navbar a:active {
   color: inherit;
@@ -72,6 +73,7 @@
   font-size: 1.5rem;
   color: #40817a;
   font-family: "ubuntu", sans-serif;
+  transition: all 0.5s ease-in-out;
 }
 .header__navbar--div5 {
   right: 10%;
@@ -83,6 +85,10 @@
   padding: 20px;
   color: white;
   font-family: "ubuntu", sans-serif;
+  transition: all 0.3s ease-in-out;
+}
+.header__navbar--div5:hover {
+  background-color: #40817aab;
 }
 .header__navbar--div6 {
   right: 7%;
@@ -119,12 +125,17 @@
   background-color: #40817a;
   color: white;
   padding: 20px;
-  width: 400px;
+  width: min(400px, 80%);
   border-radius: 10px;
   font-family: "lato";
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+.header__bienvenida--bottom button:hover {
+  background-color: #40817aab;
 }
 .header__bottom {
   height: 200px;
@@ -147,4 +158,114 @@
   width: 25%;
   padding: 1%;
   border-radius: 10px;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1260px) {
+  .header__navbar {
+    flex-wrap: wrap;
+  }
+  .header__navbar div {
+    position: unset;
+  }
+  .header__navbar--div1 {
+    margin: 0% 2% 3% 0;
+    flex-grow: 0.2;
+  }
+  .header__navbar--div2 {
+    margin: 0% 0 3% 2%;
+    flex-grow: 0.2;
+  }
+  .header__navbar--div3 {
+    margin: 39px 5% 2%;
+  }
+  .header__navbar--div4 {
+    width: 60%;
+    order: -1;
+  }
+  .header__navbar--div4 a {
+    background-color: #40817a;
+    color: white;
+    border-radius: 10px;
+    padding: 3% 5%;
+    font-size: 1.2rem;
+  }
+  .header__navbar--div6 {
+    order: -1;
+    margin-bottom: 2%;
+    width: 40%;
+  }
+  .header__navbar--subs {
+    order: 1;
+    margin-top: 25px;
+  }
+  .header__bienvenida {
+    position: unset;
+  }
+  .header__bienvenida--mid {
+    margin-top: 10%;
+  }
+  .header__bottom--1,
+  .header__bottom--2,
+  .header__bottom--3 {
+    flex-wrap: wrap;
+    height: 75%;
+  }
+}
+@media screen and (min-width: 549px) and (max-width: 1260px) {
+  .header__navbar--div1 {
+    width: 25%;
+    order: -1;
+    margin: 3% 0 0 0;
+  }
+  .header__navbar--div2 {
+    width: 25%;
+    order: -1;
+    margin: 3% 0 0 0;
+  }
+  .header__navbar--div4 {
+    width: 35%;
+  }
+  .header__navbar--div6 {
+    width: 10%;
+    margin-right: 3%;
+  }
+  .header__bottom--1,
+  .header__bottom--2,
+  .header__bottom--3 {
+    flex-wrap: nowrap;
+    height: 45%;
+  }
+}
+@media screen and (min-width: 710px) and (max-width: 1260px) {
+  .header__bienvenida {
+    position: absolute;
+    left: 6%;
+    bottom: 51%;
+    right: auto;
+    top: auto;
+  }
+}
+@media screen and (min-width: 1260px) and (max-width: 1360px) {
+  .header__navbar div {
+    position: unset;
+    margin-right: 1%;
+  }
+  .header__navbar--subs {
+    margin: 1.5% 1% 0 0;
+  }
+  .header__navbar--subs div {
+    margin: 0;
+  }  
+}
+@media screen and (min-width: 1300px) {
+  .header__navbar--div4:hover {
+    background-color: #7beab4;
+    padding: 1%;
+    margin: 2% 0 0 0;
+    border-radius: 20px;   
+  }
+  .header__navbar--div4:hover > a {
+    color: white;
+    transition: all 0.5s ease-in-out;
+  }
 }
