@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const {Category} = require('../../db');
+const {check, validationResult} = require('express-validator');
+
 
 //GET all categoy
 router.get('/', async (req,res) =>{
@@ -19,9 +21,20 @@ router.get('/:id', async (req,res) =>{
 
 
 //POST category
-router.post('/', async (req,res) =>{
+router.post('/',[
+
+    check('name','Name id required').not().isEmpty()
+
+], async (req,res) =>{
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+
     const category = await Category.create(req.body);
     res.json(category);
+
 });
 
 //PUT category
