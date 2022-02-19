@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator');
 
 //GET all categoy
 router.get('/', async (req,res) =>{
+    console.log(`Wellcome User: ${req.userId}`);
     const category = await Category.findAll();
     res.json(category);
 });

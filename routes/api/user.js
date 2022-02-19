@@ -5,7 +5,7 @@ const {check, validationResult} = require('express-validator');
 const moment = require('moment');
 const jwt = require('jwt-simple');
 
-//POST user
+//POST user, register.
 router.post('/register',[
 
     check('id','Id is required').not().isEmpty(),
@@ -40,7 +40,7 @@ router.post('/login', async (req,res)=>{
 
         const validPassword = bcrypt.compareSync(req.body.password, user.password);
         if (validPassword) {
-            res.json({success: 'TOKEN'}); 
+            res.json({success: createToken(user)}); 
         } else {
             res.json({error: 'Invalid email or password'}); 
         }
@@ -50,5 +50,15 @@ router.post('/login', async (req,res)=>{
     }
 
 });
+
+//CREATE WEB TOKEN
+const createToken = (user)=>{
+    const payload = {
+        userId: user.id,
+        createdAt: moment().unix(),
+        expiredAt: moment().add(10,'minutes').unix()
+    }
+    return jwt.encode(payload, 'alula');
+}
 
 module.exports = router
