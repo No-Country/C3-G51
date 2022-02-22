@@ -12,7 +12,9 @@ const
     suscriptionAndUser,
     userAndSale,
     productAndShoppingCart,
-    saleAndShoppingCart
+    saleAndShoppingCart,
+    suscriptionAndProduct
+
  }
   = require('./associations');
 
@@ -36,6 +38,8 @@ suscriptionAndUser(Suscription,User);
 userAndSale(User,Sale);
 productAndShoppingCart(Product,ShoppingCart);
 saleAndShoppingCart(Sale,ShoppingCart);
+suscriptionAndProduct(Suscription,Product);
+
 
 
 sequelize.sync({force: false})

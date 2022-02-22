@@ -1,9 +1,23 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs');
-const {User} = require('../../db');
+const {User,Suscription} = require('../../db');
 const {check, validationResult} = require('express-validator');
 const moment = require('moment');
 const jwt = require('jwt-simple');
+
+//GET all user
+router.get('/', async (req,res) =>{
+    const user = await User.findAll({
+        attributes: ['name','lastName','dateOfBirth','address'],    
+        include:[
+        {
+            model: Suscription,
+            attributes: ['name','price','days']
+        }
+    ]
+    });
+    res.json(user);
+});
 
 //POST user, register.
 router.post('/register',[
@@ -13,7 +27,7 @@ router.post('/register',[
     check('last_name','Last name is required').not().isEmpty(),
     check('date_of_birth','Date of birth is required').not().isEmpty(),
     check('address','Address is required').not().isEmpty(),
-    check('suscription_id','Suscription is required').not().isEmpty(),
+    check('suscriptionId','Suscription is required').not().isEmpty(),
     check('email','Email is required').isEmail(), 
     check('password','Password min length 8').isLength({ min: 8 })
 
@@ -28,6 +42,24 @@ router.post('/register',[
     const user = await User.create(req.body);
     res.json(user);
 
+});
+
+//PUT user
+router.put('/:id', async (req,res) =>{
+    const id = req.params.id
+    await User.update(req.body,{
+        where: {id : id}
+    });
+    res.json({success : `User update id: ${id}`});
+});
+
+//DELETE user
+router.delete('/:id', async (req,res) =>{
+    const id = req.params.id
+    await User.destroy({
+        where: {id : id}
+    });
+    res.json({success : `User delete id: ${id}`});
 });
 
 //LOGIN

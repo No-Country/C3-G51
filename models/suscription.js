@@ -7,7 +7,6 @@ module.exports = (sequelize, type) => {
         },
         name: type.STRING,
         price: type.INTEGER,
-        days: type.INTEGER,
-        date: type.DATE
+        days: type.INTEGER
     });
 }
