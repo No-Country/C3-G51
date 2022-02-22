@@ -6,7 +6,15 @@ const SuscriptionModel = require('./models/suscription');
 const SaleModel = require('./models/sale');
 const ShoppingCartModel = require('./models/shoppingCart');
 
-const { categoryAndProduct, suscriptionAndUser, userAndSale, productAndShoppingCart, saleAndShoppingCart} = require('./associations');
+const
+ { 
+    categoryAndProduct,
+    suscriptionAndUser,
+    userAndSale,
+    productAndShoppingCart,
+    saleAndShoppingCart
+ }
+  = require('./associations');
 
 
 
