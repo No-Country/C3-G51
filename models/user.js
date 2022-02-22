@@ -5,10 +5,10 @@ module.exports = (sequelize, type) => {
             primaryKey: true
         },
         name: type.STRING,
-        last_name: type.STRING,
-        date_of_birth: type.DATE,
+        lastName: type.STRING,
+        dateOfBirth: type.DATE,
         address: type.STRING,
-        suscription_id: {
+        suscriptionId: {
             type: type.INTEGER,
             
         },

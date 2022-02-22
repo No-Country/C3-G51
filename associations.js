@@ -1,3 +1,30 @@
-// const {Product, Category, Suscription, User} = require('./db');
-// Category.hasMany(Product,{as: 'cateogry', foreignKey: 'category_id'});
+const categoryAndProduct = (Category,Product)=>{
+    Category.hasMany(Product);
+}
 
+const suscriptionAndUser = (Suscription,User)=>{
+    Suscription.hasMany(User);
+}
+
+const userAndSale = (User,Sale)=>{
+    User.hasMany(Sale);
+}
+
+
+const productAndShoppingCart = (Product,ShoppingCart)=>{
+    Product.hasMany(ShoppingCart);
+}
+
+const saleAndShoppingCart = (Sale,ShoppingCart)=>{
+    Sale.hasMany(ShoppingCart);
+}
+
+
+
+module.exports = {
+    categoryAndProduct : categoryAndProduct,
+    suscriptionAndUser : suscriptionAndUser,
+    userAndSale : userAndSale,
+    productAndShoppingCart : productAndShoppingCart,
+    saleAndShoppingCart : saleAndShoppingCart
+}
