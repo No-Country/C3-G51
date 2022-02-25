@@ -1,3 +1,4 @@
+require('dotenv').config()
 const Sequelize = require('sequelize');
 const CategoryModel = require('./models/category');
 const UserModel = require('./models/user');
