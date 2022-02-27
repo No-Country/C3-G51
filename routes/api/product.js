@@ -61,7 +61,9 @@ router.post('/',[
         return res.status(400).json({ errors: errors.array() });
       }
 
-    const product = await Product.create(req.body);
+    const product = await Product.create(req.body,{
+        productCategory: []
+    });
     res.json(product);
 
 });
