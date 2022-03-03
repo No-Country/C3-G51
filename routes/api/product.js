@@ -6,16 +6,18 @@ const {check, validationResult} = require('express-validator');
 router.get('/', async (req,res) =>{
     const product = await Product.findAll({
         attributes: ['id','name','description','price','brand','picture'],
-        
         include:[
         {
             model: Category,
+            as: "Categories",
             attributes: ['name']
         },
         {
             model: Suscription,
-            attributes: ['name','price','days']
+            as: "Suscriptions",
+            attributes: ['name'] 
         }
+
     ]
     });
     res.json(product);
@@ -30,11 +32,13 @@ router.get('/:id', async (req,res) =>{
         include:[
         {
             model: Category,
+            as: "Categories",
             attributes: ['name']
         },
         {
             model: Suscription,
-            attributes: ['name','price','days']
+            as: "Suscriptions",
+            attributes: ['name'] 
         }
         ],
 
@@ -49,11 +53,10 @@ router.post('/',[
     check('name','Name id required').not().isEmpty(),
     check('description','Description id required').not().isEmpty(),
     check('price','Price id required').not().isEmpty(),
-    check('categoryId','Category is required').not().isEmpty(),
+    check('category','Category is required').not().isEmpty(),
     check('brand','Brand is required').not().isEmpty(),
     check('picture','Picture is required').not().isEmpty(),
-    check('suscriptionId','Suscription is required').not().isEmpty()
-
+    check('suscription','Suscription is required').not().isEmpty()
 ], async (req,res) =>{
 
     const errors = validationResult(req);
@@ -62,8 +65,15 @@ router.post('/',[
       }
 
     const product = await Product.create(req.body);
+    const category = Array.from(req.body.category)
+    if (category.length > 1) {
+        for (let i = 0; i < category.length; i++) {
+            product.addCategory(category[i],product.id);
+        }
+    }else{
+        product.addCategory(category,product.id);
+    }
     res.json(product);
-    
 });
 
 //PUT product
