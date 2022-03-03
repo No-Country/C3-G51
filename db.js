@@ -9,7 +9,7 @@ const ShoppingCartModel = require('./models/shoppingCart');
 
 const
  { 
-    productAndcategory,
+    categoryAndProduct,
     suscriptionAndUser,
     userAndSale,
     productAndShoppingCart,
@@ -34,7 +34,7 @@ const Sale = SaleModel(sequelize, Sequelize);
 const ShoppingCart = ShoppingCartModel(sequelize, Sequelize);
 
 
-productAndcategory(Category,Product);
+categoryAndProduct(Category,Product);
 suscriptionAndUser(Suscription,User);
 userAndSale(User,Sale);
 productAndShoppingCart(Product,ShoppingCart);
@@ -43,7 +43,7 @@ suscriptionAndProduct(Suscription,Product);
 
 
 
-sequelize.sync({force: true})
+sequelize.sync({force: false})
     .then(()=>{
         console.log('synchronized tables');
     });

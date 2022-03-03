@@ -1,7 +1,6 @@
-const productAndcategory = (Category,Product)=>{
-    Product.belongsToMany(Category, {through: "productCategory"});
-    Category.belongsToMany(Product, {through: "productCategory"});
-
+const categoryAndProduct = (Category,Product)=>{
+    Category.hasMany(Product);
+    Product.belongsTo(Category);
 }
 
 const suscriptionAndUser = (Suscription,User)=>{
@@ -36,7 +35,7 @@ const saleAndShoppingCart = (Sale,ShoppingCart)=>{
 
 
 module.exports = {
-    productAndcategory : productAndcategory,
+    categoryAndProduct : categoryAndProduct,
     suscriptionAndUser : suscriptionAndUser,
     userAndSale : userAndSale,
     productAndShoppingCart : productAndShoppingCart,
