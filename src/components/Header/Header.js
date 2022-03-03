@@ -27,7 +27,7 @@ const Header = () => {
             </div>
           </div>
           <div className='header__navbar--div4'>
-            <Link to="/">
+            <Link to="/login">
               INICIAR SESIÓN
             </Link>
           </div>

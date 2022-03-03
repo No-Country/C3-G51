@@ -1,5 +1,6 @@
 import React from 'react'
 import './Registro.css'
+import { Link } from 'react-router-dom'
 const Registro = () => {
   return (
     <div className='registro'>
@@ -23,10 +24,10 @@ const Registro = () => {
                 <label>Quiero subscribirme al newsletter</label>
             </div>
             <div className='registro__form--bottom'>
-                <a href='#'>CANCELAR</a>
+                <Link to="/login">CANCELAR</Link>
                 <button>CREAR CUENTA</button>
             </div>
-            <span>¿Ya tienes una cuenta? Ingresa aquí</span>
+            <span>¿Ya tienes una cuenta? <Link to="/login">Ingresa aquí</Link></span>
         </div>
     </div>
   )

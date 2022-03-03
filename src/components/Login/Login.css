@@ -65,7 +65,11 @@
   font-family: "ubuntu";
   cursor: pointer;
   width: 35%;
-  align-self: end;
-  margin-right: 20%;
+  align-self: end;  
   margin-top: 5%;
+}
+.login__form--bottom a {
+  text-decoration: none;
+  color: #40817a;
+  margin-right: 5%;
 }
