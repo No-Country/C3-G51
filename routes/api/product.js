@@ -10,12 +10,18 @@ router.get('/', async (req,res) =>{
         {
             model: Category,
             as: "Categories",
-            attributes: ['name']
+            attributes: ['name'],
+            through: {
+                attributes: ['Category_id','Product_id'],
+              }
         },
         {
             model: Suscription,
             as: "Suscriptions",
-            attributes: ['name'] 
+            attributes: ['name'],
+            through: {
+                attributes: ['Suscription_id','Product_id'],
+              }
         }
 
     ]
@@ -33,17 +39,54 @@ router.get('/:id', async (req,res) =>{
         {
             model: Category,
             as: "Categories",
-            attributes: ['name']
+            attributes: ['name'],
+            through: {
+                attributes: ['Category_id','Product_id'],
+              }
         },
         {
             model: Suscription,
             as: "Suscriptions",
-            attributes: ['name'] 
+            attributes: ['name'],
+            through: {
+                attributes: ['Suscription_id','Product_id'],
+              }
         }
         ],
 
         where:
             {id : id}
+    });
+    res.json(product);
+});
+
+//GET product BY suscription
+router.get('/:id', async (req,res) =>{
+    const suscription_id = req.params.id
+    const product = await Product.findOne({
+        attributes: ['id','name','description','price','brand','picture'],
+
+        include:[
+        {
+            model: Category,
+            as: "Categories",
+            attributes: ['name'],
+            through: {
+                attributes: ['Category_id','Product_id'],
+              }
+        },
+        {
+            model: Suscription,
+            as: "Suscriptions",
+            attributes: ['name'],
+            through: {
+                attributes: ['Suscription_id','Product_id'],
+              }
+        }
+        ],
+
+        where:
+            {Suscription_id : suscription_id}
     });
     res.json(product);
 });
@@ -65,7 +108,9 @@ router.post('/',[
       }
 
     const product = await Product.create(req.body);
-    const category = Array.from(req.body.category)
+    const category = Array.from(req.body.category);
+    const suscription = Array.from(req.body.suscription);
+
     if (category.length > 1) {
         for (let i = 0; i < category.length; i++) {
             product.addCategory(category[i],product.id);
@@ -73,6 +118,15 @@ router.post('/',[
     }else{
         product.addCategory(category,product.id);
     }
+
+    if (suscription.length > 1) {
+        for (let i = 0; i < suscription.length; i++) {
+            product.addSuscription(suscription[i],product.id);
+        }
+    }else{
+        product.addsuscription(suscription,product.id);
+    }
+
     res.json(product);
 });
 
