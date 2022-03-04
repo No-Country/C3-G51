@@ -1,0 +1,74 @@
+.footer {
+  background-color: #003b32;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.footer__izq {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 300px;
+  margin: 100px 0 0 0;
+}
+.footer__izq a {
+  font-family: "ubuntu", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  text-decoration: none;
+}
+.footer__der {
+  text-align: initial;
+  color: white;
+  margin: 20px 0 10px 10px;
+}
+.footer__der--subscribe input {
+  height: 50px;
+  background-color: #d3d3d3;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  width: clamp(200px, 40%, 400px);
+  font-family: "lato", sans-serif;
+  padding: 0 2%;
+  font-size: 1rem;
+}
+.footer__der--subscribe button {
+  background-color: #40817a;
+  padding: 15px;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  height: 50px;
+  margin: 15px;
+  width: 200px;
+  cursor: pointer;
+}
+.footer__der--subscribe p {
+  margin: 0;
+}
+.footer__der--bottom {
+  display: flex;
+  flex-wrap: wrap;
+}
+.footer__der--bottom--redes {
+  width: 25%;
+  margin-right: 13%;
+}
+.footer__der--bottom--redes--iconos {
+  align-items: center;
+  display: flex;
+}
+.footer__der--bottom--redes--iconos a {
+  margin-right: 5%;
+}
+@media screen and (max-width: 505px) {
+  .footer {
+    display: flex;
+    flex-direction: column;
+  }
+  .footer__izq {
+    margin: 0;
+  }
+}
