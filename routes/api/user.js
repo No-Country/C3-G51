@@ -69,7 +69,7 @@ router.post('/login', async (req,res)=>{
     }});
 
     if (user) {
-
+        // res.send('Wellcome');
         const validPassword = bcrypt.compareSync(req.body.password, user.password);
         if (validPassword) {
             res.json({success: createToken(user)}); 

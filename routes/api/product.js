@@ -32,7 +32,7 @@ router.get('/', async (req,res) =>{
 //GET product BY id
 router.get('/:id', async (req,res) =>{
     const id = req.params.id
-    const product = await Product.findOne({
+    const product = await Product.findByPk(id,{
         attributes: ['id','name','description','price','brand','picture'],
 
         include:[
@@ -52,44 +52,41 @@ router.get('/:id', async (req,res) =>{
                 attributes: ['Suscription_id','Product_id'],
               }
         }
-        ],
-
-        where:
-            {id : id}
+        ]
     });
     res.json(product);
 });
 
-//GET product BY suscription
-router.get('/:id', async (req,res) =>{
-    const suscription_id = req.params.id
-    const product = await Product.findOne({
-        attributes: ['id','name','description','price','brand','picture'],
+// //GET product BY suscription
+// router.get('/:id', async (req,res) =>{
+//     const suscription_id = req.params.id
+//     const product = await Product.findOne({
+//         attributes: ['id','name','description','price','brand','picture'],
 
-        include:[
-        {
-            model: Category,
-            as: "Categories",
-            attributes: ['name'],
-            through: {
-                attributes: ['Category_id','Product_id'],
-              }
-        },
-        {
-            model: Suscription,
-            as: "Suscriptions",
-            attributes: ['name'],
-            through: {
-                attributes: ['Suscription_id','Product_id'],
-              }
-        }
-        ],
+//         include:[
+//         {
+//             model: Category,
+//             as: "Categories",
+//             attributes: ['name'],
+//             through: {
+//                 attributes: ['Category_id','Product_id'],
+//               }
+//         },
+//         {
+//             model: Suscription,
+//             as: "Suscriptions",
+//             attributes: ['name'],
+//             through: {
+//                 attributes: ['Suscription_id','Product_id'],
+//               }
+//         }
+//         ],
 
-        where:
-            {Suscription_id : suscription_id}
-    });
-    res.json(product);
-});
+//         where:
+//             {suscription_id : Suscription_id}
+//     });
+//     res.json(product);
+// });
 
 //POST product
 router.post('/',[
