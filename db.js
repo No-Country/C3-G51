@@ -37,7 +37,7 @@ suscriptionAndProduct(Suscription,Product);
 
 
 
-sequelize.sync({alter: true})
+sequelize.sync({force: false})
     .then(()=>{
         console.log('synchronized tables');
     });

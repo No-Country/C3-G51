@@ -64,25 +64,14 @@ router.get('/:id', async (req,res) =>{
 //POST sale
 router.post('/',[
     check('userId','User id required').not().isEmpty(),
-    check('total','Total is required').not().isEmpty(),
 ], async (req,res) =>{
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }
-
+    //Deber hacer un update en el usuario.
     const sale = await Sale.create(req.body);
-    const product = Array.from(req.body.product);
-
-    if (product.length > 1) {
-        for (let i = 0; i < product.length; i++) {
-            sale.addProduct(product[i],sale.id);
-        } 
-    }else{
-        sale.addProduct(product,sale.id);
-    }
-
     res.json(sale);
 });
 
