@@ -57,37 +57,6 @@ router.get('/:id', async (req,res) =>{
     res.json(product);
 });
 
-// //GET product BY suscription
-// router.get('/:id', async (req,res) =>{
-//     const suscription_id = req.params.id
-//     const product = await Product.findOne({
-//         attributes: ['id','name','description','price','brand','picture'],
-
-//         include:[
-//         {
-//             model: Category,
-//             as: "Categories",
-//             attributes: ['name'],
-//             through: {
-//                 attributes: ['Category_id','Product_id'],
-//               }
-//         },
-//         {
-//             model: Suscription,
-//             as: "Suscriptions",
-//             attributes: ['name'],
-//             through: {
-//                 attributes: ['Suscription_id','Product_id'],
-//               }
-//         }
-//         ],
-
-//         where:
-//             {suscription_id : Suscription_id}
-//     });
-//     res.json(product);
-// });
-
 //POST product
 router.post('/',[
     check('name','Name id required').not().isEmpty(),
@@ -121,7 +90,7 @@ router.post('/',[
             product.addSuscription(suscription[i],product.id);
         }
     }else{
-        product.addsuscription(suscription,product.id);
+        product.addSuscription(suscription,product.id);
     }
 
     res.json(product);

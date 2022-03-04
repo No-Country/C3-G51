@@ -1,18 +1,39 @@
 const router = require('express').Router();
-const {Suscription} = require('../../db');
+const {Suscription, Product} = require('../../db');
 const {check, validationResult} = require('express-validator');
 
 //GET all suscriptions
 router.get('/', async (req,res) =>{
-    const suscription = await Suscription.findAll();
+    const suscription = await Suscription.findAll({
+        include:[
+            {
+                model: Product,
+                as: "Products",
+                attributes: ['id','name','description','price','brand','picture'],
+                through: {
+                    attributes: ['Product_id','Suscription_id'],
+                  }
+            }
+        ],
+    });
     res.json(suscription);
 });
 
 //GET suscriptions BY id 
 router.get('/:id', async (req,res) =>{
     const id = req.params.id
-    const suscription = await Suscription.findOne({
-        where: {id : id}
+    const suscription = await Suscription.findByPk(id,{
+        where: {id : id},
+        include:[
+                    {
+                        model: Product,
+                        as: "Products",
+                        attributes: ['id','name','description','price','brand','picture'],
+                        through: {
+                            attributes: ['Product_id','Suscription_id'],
+                          }
+                    }
+                ],
     });
     res.json(suscription);
 });
