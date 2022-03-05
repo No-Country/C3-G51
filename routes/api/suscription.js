@@ -5,6 +5,7 @@ const {check, validationResult} = require('express-validator');
 //GET all suscriptions
 router.get('/', async (req,res) =>{
     const suscription = await Suscription.findAll({
+        attributes:['id','name','price','days'],
         include:[
             {
                 model: Product,
@@ -23,7 +24,7 @@ router.get('/', async (req,res) =>{
 router.get('/:id', async (req,res) =>{
     const id = req.params.id
     const suscription = await Suscription.findByPk(id,{
-        where: {id : id},
+        attributes:['id','name','price','days'],
         include:[
                     {
                         model: Product,

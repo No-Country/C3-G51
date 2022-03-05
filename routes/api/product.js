@@ -10,7 +10,7 @@ router.get('/', async (req,res) =>{
         {
             model: Category,
             as: "Categories",
-            attributes: ['name'],
+            attributes: ['id','name'],
             through: {
                 attributes: ['Category_id','Product_id'],
               }
@@ -18,7 +18,7 @@ router.get('/', async (req,res) =>{
         {
             model: Suscription,
             as: "Suscriptions",
-            attributes: ['name'],
+            attributes: ['id','name'],
             through: {
                 attributes: ['Suscription_id','Product_id'],
               }
@@ -39,7 +39,7 @@ router.get('/:id', async (req,res) =>{
         {
             model: Category,
             as: "Categories",
-            attributes: ['name'],
+            attributes: ['id','name'],
             through: {
                 attributes: ['Category_id','Product_id'],
               }
@@ -47,7 +47,7 @@ router.get('/:id', async (req,res) =>{
         {
             model: Suscription,
             as: "Suscriptions",
-            attributes: ['name'],
+            attributes: ['id','name'],
             through: {
                 attributes: ['Suscription_id','Product_id'],
               }

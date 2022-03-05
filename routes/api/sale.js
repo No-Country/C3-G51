@@ -7,6 +7,7 @@ const {check, validationResult} = require('express-validator');
 //GET all sales
 router.get('/', async (req,res) =>{
     const sale = await Sale.findAll({
+        attributes: ['id','createdAt'],
         include:[
             {
                 model: User,
@@ -14,7 +15,7 @@ router.get('/', async (req,res) =>{
                 include:[
                     {
                         model: Suscription,
-                        attributes : ['name','price'],
+                        attributes : ['id','name','price','days'],
                         include:                     
                         {
                             model: Product,
@@ -36,6 +37,7 @@ router.get('/', async (req,res) =>{
 router.get('/:id', async (req,res) =>{
     const id = req.params.id
     const sale = await Sale.findByPk(id,{
+        attributes: ['id','createdAt'],
         include:[
             {
                 model: User,
@@ -43,7 +45,7 @@ router.get('/:id', async (req,res) =>{
                 include:[
                     {
                         model: Suscription,
-                        attributes : ['name','price'],
+                        attributes : ['id','name','price','days'],
                         include:                     
                         {
                             model: Product,
