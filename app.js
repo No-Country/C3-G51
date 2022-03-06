@@ -1,23 +1,21 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const bodyParser= require('body-parser');
-const apiRouter= require('./routes/api')
+const apiRouter= require('./routes/api');
+const documentation = require('./documentation');
+const cors = require('cors');
 const app = express();
-const cors = require('cors')
-require('./db')
+require('./db');
 
 const PORT = 3003;
 
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors())
+app.use(cors());
 
-// app.use((req,res,next) => {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     next();
-// })
-
+app.get('/',(req,res)=>{
+    res.json(documentation);
+});
 app.use('/api', apiRouter);
 
 

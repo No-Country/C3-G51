@@ -1,21 +1,39 @@
 const router = require('express').Router();
-const {Category} = require('../../db');
+const {Category,Product} = require('../../db');
 const {check, validationResult} = require('express-validator');
 
 
 //GET all categoy
 router.get('/', async (req,res) =>{
-    console.log(`Wellcome User: ${req.userId}`);
-    const category = await Category.findAll();
+    const category = await Category.findAll({
+        attributes:['id','name'],
+        include:                     
+        {
+            model: Product,
+            as: "Products",
+            attributes: ['id','name','description','price','brand','picture'],
+            through: {
+                attributes: ['Product_id','Category_id'],
+              }
+        }
+    });
     res.json(category);
 });
 
 //GET category BY id
 router.get('/:id', async (req,res) =>{
     const id = req.params.id
-    const category = await Category.findOne({
-        where:
-            {id : id}
+    const category = await Category.findByPk(id,{
+        attributes:['id','name'],
+        include:                     
+        {
+            model: Product,
+            as: "Products",
+            attributes: ['id','name','description','price','brand','picture'],
+            through: {
+                attributes: ['Product_id','Category_id'],
+              }
+        }
     });
     res.json(category);
 });
