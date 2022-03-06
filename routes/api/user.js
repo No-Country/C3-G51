@@ -21,8 +21,6 @@ router.get('/', async (req,res) =>{
 
 //POST user, register.
 router.post('/register',[
-
-    check('id','Id is required').not().isEmpty(),
     check('name','Name is required').not().isEmpty(),
     check('last_name','Last name is required').not().isEmpty(),
     check('date_of_birth','Date of birth is required').not().isEmpty(),
@@ -30,7 +28,6 @@ router.post('/register',[
     check('suscriptionId','Suscription is required').not().isEmpty(),
     check('email','Email is required').isEmail(), 
     check('password','Password min length 8').isLength({ min: 8 })
-
 ], async (req,res)=>{
 
     const errors = validationResult(req);
