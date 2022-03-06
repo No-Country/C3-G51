@@ -93,3 +93,14 @@
   color: #40817a;
   margin-right: 5%;
 }
+.emailError,
+.passwordError,
+.failToSend,
+.successfulSend {
+  color: #fff;
+  background: #a62b2b;
+  border-radius: 1rem;
+  padding: 0.5% 2%;
+  margin: 2% auto;
+  width: fit-content;
+}
