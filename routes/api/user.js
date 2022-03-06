@@ -22,8 +22,8 @@ router.get('/', async (req,res) =>{
 //POST user, register.
 router.post('/register',[
     check('name','Name is required').not().isEmpty(),
-    check('last_name','Last name is required').not().isEmpty(),
-    check('date_of_birth','Date of birth is required').not().isEmpty(),
+    check('lastName','Last name is required').not().isEmpty(),
+    check('dateOfBirth','Date of birth is required').not().isEmpty(),
     check('address','Address is required').not().isEmpty(),
     check('suscriptionId','Suscription is required').not().isEmpty(),
     check('email','Email is required').isEmail(), 
