@@ -8,7 +8,7 @@ const jwt = require('jwt-simple');
 //GET all user
 router.get('/', async (req,res) =>{
     const user = await User.findAll({
-        attributes: ['name','lastName','dateOfBirth','address','email'],    
+        attributes: ['id','name','lastName','dateOfBirth','address','email'],    
         include:[
         {
             model: Suscription,
