@@ -31,7 +31,7 @@ router.post('/register',[
     check('email','Email is required').isEmail(), 
     check('password','Password min length 8').isLength({ min: 8 })
 
-], async (req,res)=>{
+], async (req,res)=>{ 
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

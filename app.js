@@ -11,6 +11,7 @@ const PORT = 3003;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors())
 
 // app.use((req,res,next) => {
 //     res.header("Access-Control-Allow-Origin", "*");
@@ -18,7 +19,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 // })
 
 app.use('/api', apiRouter);
-app.use(cors())
 
 
 app.listen(PORT,()=>{

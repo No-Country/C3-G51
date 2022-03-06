@@ -1,4 +1,4 @@
-.registro {
+.registro , .registro__success{
   background-image: url("../../assets/RegistroFoto.png");
   height: 924px;
   background-size: cover;

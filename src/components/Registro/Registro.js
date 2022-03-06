@@ -7,10 +7,10 @@ import { useState } from "react";
 const Registro = () => {
   const [success, setSuccess] = useState(false);
   const [fail, setFail] = useState(false);
-  const [login, setLogin] = useState(false);
-  //   const { loggedIn } = useAuth();
+  const [register, setRegister] = useState(false);   
 
   return (
+      <>      
     <Formik
       initialValues={{
         nombre: "",
@@ -37,18 +37,8 @@ const Registro = () => {
         }
         return errores;
       }}
-      onSubmit={(inputs) => {
-        // const email = process.env.REACT_APP_USER_EMAIL;
-        // const pass = process.env.REACT_APP_USER_PASS;
-        // if (inputs.email === email && inputs.password === pass) {
-        //   setSuccess(true);
-        //   setLogin(true);
-        //   setFail(false);
-        //   //   loggedIn();
-        // } else {
-        //   setFail(true);
-        // }
-        let userInfo = {
+      onSubmit={(inputs) => {        
+        let userInfo = {          
             name: inputs.nombre,
             email: inputs.email,
             password: inputs.password
@@ -70,16 +60,21 @@ const Registro = () => {
             //   .then((response) => response.json())
               .then((res) => {
                 if(res.status === 200){
-                  return window.location.replace('/api')
+                  console.log('Bienvenido', userInfo.name)
+                  setRegister(true)
                 }
-              })        
-              .catch((error) => console.log(error));
+              })         
+              .catch((error) => {
+                  console.log(error)
+                  console.log('Usuario registrado')
+                });
           } catch (error) {
-            console.log(error);
+            console.log(error);            
           }
       }}
     >
       {(formikProps) => (
+          !register &&
         <Form className="registro">
           <div className="registro__form">
             <h2>CREAR CUENTA</h2>
@@ -149,7 +144,19 @@ const Registro = () => {
         </Form>
       )}
     </Formik>
+    {register && (
+        <div className="registro__success">
+            <div></div>
+          <p className="successfulSend">Bienvenido!</p>
+          <Link to='/'>
+            <button className="ingresar">Ingresar al sitio</button>
+          </Link>
+        </div>
+
+      )}
+    </>
   );
+  
 };
 
 export default Registro;
