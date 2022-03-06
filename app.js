@@ -1,19 +1,22 @@
-require('dotenv').config()
+require('dotenv').config();
 const express = require('express');
 const bodyParser= require('body-parser');
-const apiRouter= require('./routes/api')
+const apiRouter= require('./routes/api');
+const documentation = require('./documentation');
+const cors = require('cors');
 const app = express();
-require('./db')
+require('./db');
+
 
 const PORT = process.env.PORT || 3000;
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors());
 
 app.get('/',(req,res)=>{
-    const documentacion = require('./documentation')
-    res.json(documentacion)
+    res.json(documentation);
 });
 app.use('/api', apiRouter);
 
