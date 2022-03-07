@@ -1,4 +1,4 @@
-.Login {
+.Login , .login__success{
   background-image: url("C:/Users/carab/Desktop/Stuff/NoCountryForJRDevs/nc/src/assets/FotoLogin.png");
   background-size: cover;
   height: 924px;
@@ -72,4 +72,23 @@
   text-decoration: none;
   color: #40817a;
   margin-right: 5%;
+}
+.successfulSend {
+  color: #fff;
+  background: #2ba68f;
+  border-radius: 1rem;
+  padding: 2.5% 5%;
+  margin: 2% auto;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-family: "ubuntu";
+}
+.login__success--inner {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 50%;
+}
+.ingresar {
+  padding: 10px;
 }

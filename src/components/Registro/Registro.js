@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import { useState } from "react";
 
-const Registro = () => {
-  const [success, setSuccess] = useState(false);
-  const [fail, setFail] = useState(false);
+const Registro = () => { 
   const [register, setRegister] = useState(false);   
 
   return (
@@ -146,11 +144,12 @@ const Registro = () => {
     </Formik>
     {register && (
         <div className="registro__success">
-            <div></div>
-          <p className="successfulSend">Bienvenido!</p>
-          <Link to='/'>
-            <button className="ingresar">Ingresar al sitio</button>
-          </Link>
+            <div className="registro__success--inner">
+                <h3 className="successfulSend">¡Registro exitoso!</h3>
+                <Link to='/'>
+                    <button className="ingresar">Ingresar al sitio</button>
+                </Link>
+            </div>
         </div>
 
       )}
