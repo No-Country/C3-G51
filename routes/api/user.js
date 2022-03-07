@@ -71,10 +71,12 @@ router.post('/login', async (req,res)=>{
         if (validPassword) {
             res.json({success: createToken(user)}); 
         } else {
+            res.status(404);
             res.json({error: 'Invalid email or password'}); 
         }
 
     } else {
+        res.status(404);
         res.json({error: 'Invalid email or password'});
     }
 
