@@ -30,6 +30,15 @@ router.post('/register',[
     check('password','Password min length 8').isLength({ min: 8 })
 ], async (req,res)=>{
 
+    const existingUser = await User.findOne({where:{
+        email: req.body.email
+    }});
+
+    if (existingUser) {
+        res.status(404);
+        res.json({error : "User existing"})
+    }
+
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
