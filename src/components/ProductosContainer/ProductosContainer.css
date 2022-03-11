@@ -1,0 +1,20 @@
+.ProductosContainer {
+  display: flex;
+}
+.ProductosContainer__nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.5;
+}
+.ProductosContainer__nav span:first-of-type {
+  margin: 50% 0 0 0;
+  font-weight: bold;
+}
+.ProductosContainer__nav span:last-of-type {
+  font-weight: bold;
+  margin-top: 3%;
+}
+.ProductosContainer__nav a {
+    text-decoration: none;
+    margin-top: 3%;
+}

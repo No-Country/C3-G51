@@ -72,7 +72,7 @@ router.post('/login', async (req,res)=>{
         // res.send('Wellcome');
         const validPassword = bcrypt.compareSync(req.body.password, user.password);
         if (validPassword) {
-            res.json({success: createToken(user)}); 
+            res.json({success: createToken(user)});             
         } else {
             res.json({error: 'Invalid email or password'}); 
         }

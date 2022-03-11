@@ -6,6 +6,7 @@ import { useState } from "react";
 
 const Registro = () => { 
   const [register, setRegister] = useState(false);   
+  const [name, setName] = useState("")
 
   return (
       <>      
@@ -60,6 +61,7 @@ const Registro = () => {
                 if(res.status === 200){
                   console.log('Bienvenido', userInfo.name)
                   setRegister(true)
+                  setName(userInfo.name)
                 }
               })         
               .catch((error) => {
@@ -145,7 +147,7 @@ const Registro = () => {
     {register && (
         <div className="registro__success">
             <div className="registro__success--inner">
-                <h3 className="successfulSend">¡Registro exitoso!</h3>
+                <h3 className="successfulSend">¡Registro exitoso! Bienvenido {name}</h3>
                 <Link to='/'>
                     <button className="ingresar">Ingresar al sitio</button>
                 </Link>

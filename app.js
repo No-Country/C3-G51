@@ -11,12 +11,12 @@ const PORT = 3003;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(cors());
+app.use(cors({origin: "*"}));
  
 app.get('/',(req,res)=>{
-    res.json(documentation);
+    res.json(documentation);  
 });
-app.use('/api', apiRouter);
+app.use('/api', apiRouter);  
 
 
 app.listen(PORT,()=>{

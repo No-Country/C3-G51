@@ -52,7 +52,7 @@ router.get('/:id', async (req,res) =>{
                 attributes: ['Suscription_id','Product_id'],
               }
         }
-        ]
+        ]  
     });
     res.json(product);
 });
@@ -65,10 +65,10 @@ router.post('/',[
     check('category','Category is required').not().isEmpty(),
     check('brand','Brand is required').not().isEmpty(),
     check('picture','Picture is required').not().isEmpty(),
-    check('suscription','Suscription is required').not().isEmpty()
+    check('suscription','Suscription is required').not().isEmpty() 
 ], async (req,res) =>{
 
-    const errors = validationResult(req);
+    const errors = validationResult(req); 
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
       }

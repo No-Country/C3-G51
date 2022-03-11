@@ -2,10 +2,20 @@ import React from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { Formik, Field, ErrorMessage, Form } from "formik";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Login = () => {
   const [login, setLogin] = useState(false);
+  const [invalidPass, setInvalidPass] = useState(false)
+  const [mensajeError, setMensajeError] = useState("")
+  const [name, setName] = useState("")
+
+  useEffect(() => {
+    if(invalidPass){
+      setMensajeError("Email o Password inválidos") 
+    }      
+  }, [invalidPass])
+  
   return (
     <>
       <Formik
@@ -16,10 +26,14 @@ const Login = () => {
         validate={(inputs) => {
           let errores = {};
           if (!inputs.email) {
-            errores.email = "Por favor, ingrese una dirección de email";
+            errores.email = "Por favor, ingrese un email";
           }
           if (!inputs.password) {
             errores.password = "Por favor, ingrese una password";
+          }else{
+            if(invalidPass){
+              errores.password = mensajeError
+            }
           }
           return errores;
         }}
@@ -27,8 +41,7 @@ const Login = () => {
           let userInfo = {
             email: inputs.email,
             password: inputs.password,
-          };
-          console.log(userInfo);
+          };          
           try {
             fetch("http://localhost:3003/api/user/login", {
               method: "POST",
@@ -40,15 +53,21 @@ const Login = () => {
                 "Content-Type": "application/json",
                 "Acces-Control-Allow-Origin": "*",
               },
-              body: JSON.stringify(userInfo),
+              body: JSON.stringify(userInfo), 
             })
-              //   .then((response) => response.json())
+              .then((response) => response.json()) 
               .then((res) => {
-                if (res.status === 200) {
-                  console.log("Bienvenido", userInfo.email);
-                  setLogin(true);
+                if(res.success){
+                  console.log('Bienvenido', userInfo.email)
+                  setInvalidPass(false)
+                  setLogin(true)
+                  setName(userInfo.name)
                 }
-              })
+                if(res.error){
+                  console.log('Contraseña invalida')
+                  setInvalidPass(true)                  
+                }
+              }) 
               .catch((error) => {
                 console.log(error);
                 console.log("Usuario inexistente");
@@ -88,7 +107,7 @@ const Login = () => {
                   )}
                 />
                 <div className="Login__form--bottom">
-                  <Link to="/login">CANCELAR</Link>
+                  <Link to="/">CANCELAR</Link>
                   <button type="submit">INICIAR SESIÓN</button>
                 </div>
                 <span>
@@ -103,7 +122,7 @@ const Login = () => {
       {login && (
         <div className="login__success">
           <div className="login__success--inner">
-            <h3 className="successfulSend">¡Bienvenido!</h3>
+            <h3 className="successfulSend">¡Bienvenido {name}!</h3>
             <Link to="/">
               <button className="ingresar">Ingresar al sitio</button>
             </Link>
@@ -116,21 +135,3 @@ const Login = () => {
 
 export default Login;
 
-{
-  /* <div className='Login'>
-        <div className='Login__inputs'>
-            <h2>INICIAR SESIÓN</h2>
-            <span>Bienvenido, nos alegra que hayas vuelto!</span>
-            <label>Email</label>
-            <input type="email" name="email" placeholder='Ingresa tu email'></input>
-            <label>Contraseña</label>
-            <input type="password" name="password"></input>
-            <span>¿Olvidaste tu contraseña?</span>
-            <div className='login__form--bottom'>
-                <Link to="/">VOLVER</Link>
-                <button>INICIAR SESIÓN</button>
-            </div>
-            <span>¿No tienes una cuenta? <Link to="/registro">Ingresa aquí</Link></span>
-        </div>
-    </div> */
-}
