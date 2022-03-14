@@ -5,7 +5,8 @@ import Login from './components/Login/Login';
 import Registro from './components/Registro/Registro';
 import ItemDetail from './components/ItemDetail/ItemDetail';
 import React from 'react';
-import ProductosContainer from './components/ProductosContainer/ProductosContainer';
+import ProductosContainer from './components/ProductosContainer/ProductosContainer'
+
 
 
 function App() {
